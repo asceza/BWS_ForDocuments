@@ -1,0 +1,25 @@
+﻿<Window x:Class="xls_app.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:xls_app"
+        mc:Ignorable="d"
+        Title="Размножатель документов" Height="193" Width="582" WindowStartupLocation="CenterScreen" MinWidth="800" MinHeight="280" Icon="/Resources/Logo48.ico">
+    <Grid>
+        <TextBox x:Name="tbTamplateTablePath" Margin="30,43,120,0" TextWrapping="Wrap" Text="Выберите исходную таблицу" VerticalAlignment="Top" Height="25"/>
+        <Button x:Name="btTamplateTableSource" Content="Обзор" Margin="0,43,30,0" Click="btTamplateSource_Click" HorizontalAlignment="Right" Width="60" Height="25" VerticalAlignment="Top"/>
+        <Button Content="Размножить документы" Margin="0,0,30,30" Click="Button_Click" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150"/>
+        <Label Content="Путь к таблице с данными" HorizontalAlignment="Left" Margin="32,17,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbTamplateDocPath" Height="25" Margin="30,94,120,0" TextWrapping="Wrap" Text="Выберите шаблон документа" VerticalAlignment="Top"/>
+        <Label  Content="Путь к шаблону документа" HorizontalAlignment="Left" Margin="32,68,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btTamplateDocSource" Content="Обзор" Margin="0,94,30,0" Click="btTamplateDocSource_Click" HorizontalAlignment="Right" Width="60" Height="25" VerticalAlignment="Top"/>
+        <Button Content="Благодарность автору" Margin="0,0,200,30" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150"/>
+        <Label  Content="Символ выделения" HorizontalAlignment="Left" Margin="32,120,0,0" Height="26" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbSymbol" HorizontalAlignment="Left" Height="25" Margin="32,146,0,0" TextWrapping="Wrap" Text="~" VerticalAlignment="Top" Width="120" TextAlignment="Center" FontSize="18"/>
+        <Button Content="Инструкция" Margin="0,0,370,30" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="90" Click="Button_Click_1"/>
+        <TextBox  x:Name="tbTableName" HorizontalAlignment="Left" Height="25" Margin="179,146,0,0" TextWrapping="Wrap" Text="Data" VerticalAlignment="Top" Width="120"/>
+        <Label  Content="Имя таблицы" HorizontalAlignment="Left" Margin="179,120,0,0" Height="26" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
