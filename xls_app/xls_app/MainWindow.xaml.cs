@@ -18,6 +18,8 @@ using Microsoft.WindowsAPICodePack.Dialogs;
 using DocumentFormat.OpenXml.Drawing;
 using System.Threading;
 using System.Windows.Threading;
+using System.Diagnostics;
+using xls_app.Properties;
 
 
 namespace xls_app
@@ -141,9 +143,40 @@ namespace xls_app
     
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            string donatUrl = "";
+            try
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = donatUrl,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Не удалось открыть сайт: " + ex.Message + "\n\n\n Воспользуйтесь QR-кодом");
+                HelpDonat helpDonat = new HelpDonat();
+                helpDonat.ShowDialog();
+            }
         }
 
-        
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            string donatUrl = "https://pay.market-tips.kontur.ru/pay/5221/";
+            try
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = donatUrl,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex) {
+                MessageBox.Show("Не удалось открыть сайт: "+ex.Message +"\n\n\n Воспользуйтесь QR-кодом");
+                HelpDonat helpDonat = new HelpDonat();
+                helpDonat.ShowDialog();
+            }
+
+        }
     }
 }
