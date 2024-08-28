@@ -76,23 +76,17 @@ namespace xls_app
             }
             MessageBoxResult ms = MessageBox.Show("Размножение документов может занять некоторое время\n\nДождитесь сообщения о завершении размножения документов",
                 "Сообщение",
-                MessageBoxButton.OK,
+                MessageBoxButton.OKCancel,
                 MessageBoxImage.Information);
             if (ms == MessageBoxResult.OK)
             {
                 MainFunc(folderPath);
+                MessageBoxResult ms2 = MessageBox.Show("Размножение документов завершено\n\nМожете проверять результат",
+                "Процесс завершен");
             }
 
-            MessageBoxResult ms2 = MessageBox.Show("Размножение документов завершено\n\nМожете проверять результат\n\nЗакрыть программу?",
-                "Процесс завершен",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question);
-            if (ms == MessageBoxResult.Yes)
-            {
-                Close();
-            }
             
-
+            
         }
 
         public void MainFunc(string folderPath)
@@ -143,7 +137,7 @@ namespace xls_app
     
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            string donatUrl = "";
+            string donatUrl = "https://vk.com/video-211694366_456239091";
             try
             {
                 Process.Start(new ProcessStartInfo
@@ -154,9 +148,8 @@ namespace xls_app
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Не удалось открыть сайт: " + ex.Message + "\n\n\n Воспользуйтесь QR-кодом");
-                HelpDonat helpDonat = new HelpDonat();
-                helpDonat.ShowDialog();
+                MessageBox.Show(ex.Message);
+                
             }
         }
 
