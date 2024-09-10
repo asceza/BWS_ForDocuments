@@ -8,6 +8,9 @@ using System.Windows;
 
 namespace xls_app
 {
+    /// <summary>
+    /// Копирование документа
+    /// </summary>
     internal class CopyDocument
     {
         public void CopyDoc(List<string> fileNames, string folderPath, string originFilePath)
@@ -39,13 +42,8 @@ namespace xls_app
                     {
                         MessageBox.Show($"Ошибка при копировании файла: {ex.Message}");
                     }
-                }
-                                
-
-            }
-                        
-            
-
+                }                               
+            }                              
         }
     }
 }
