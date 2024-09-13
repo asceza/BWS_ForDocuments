@@ -32,5 +32,17 @@ namespace xls_app
             }
             return result;
         }
+
+        public List<TableDataInstance> GetTableData(string path, string tableName, uint firstRow)
+        {
+            return null;
+        }
+
+        public List<TableDataInstance> GetTableData(string path, string tableName, uint firstRow, uint rowsAmount)
+        {
+            return null;
+        }
+
+
     }
 }

@@ -86,15 +86,29 @@ namespace xls_app
 
         public void MainFunc(string folderPath)
         {
-            TableData td = new TableData();
-            var tableData = new List<TableDataInstance>();
+            TableData tableData = new TableData();
+            var tableDataList = new List<TableDataInstance>();
 
             RangeRow rangeRow = GetRangeRow();
 
 
             try
             {
-                tableData = td.GetTableData(tbTemplateTablePath.Text, tbTableName.Text);
+                switch (rangeRow.state)
+                {
+                    case RangeRow.State.Single:
+                        tableDataList = tableData.GetTableData(tbTemplateTablePath.Text, tbTableName.Text, rangeRow.FirstRow);
+                        break;
+                    case RangeRow.State.Several:
+                        tableDataList = tableData.GetTableData(tbTemplateTablePath.Text, tbTableName.Text, rangeRow.FirstRow, rangeRow.RowsAmount);
+                        break;
+                    case RangeRow.State.All:
+                        tableDataList = tableData.GetTableData(tbTemplateTablePath.Text, tbTableName.Text);
+                        break;
+                    default:
+                        break;
+                }
+
             }
             catch
             {
@@ -109,13 +123,13 @@ namespace xls_app
             FileNameList fnl = new FileNameList();
             Writer wr = new Writer();
 
-            var fileNames = fnl.GetFileNameList(tableData);
+            var fileNames = fnl.GetFileNameList(tableDataList);
 
             cd.CopyDoc(fileNames, folderPath, tbTemplateDocPath.Text);
 
             var destinationFiles = Directory.GetFiles(folderPath).ToList();
 
-            wr.WriteValue(tableData, destinationFiles, tbSymbol.Text, folderPath);
+            wr.WriteValue(tableDataList, destinationFiles, tbSymbol.Text, folderPath);
         }
 
         private RangeRow GetRangeRow()
