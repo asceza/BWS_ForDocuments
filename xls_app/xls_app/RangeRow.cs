@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace xls_app
 {
+    /// <summary>
+    /// Диапазон строк в таблице данных
+    /// </summary>
     internal class RangeRow
     {
         public uint FirstRow {  get; set; }
