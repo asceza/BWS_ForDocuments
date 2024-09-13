@@ -156,6 +156,7 @@
     <Compile Include="Properties\HelpDonat.xaml.cs">
       <DependentUpon>HelpDonat.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RangeRow.cs" />
     <Compile Include="TableData.cs" />
     <Compile Include="TableDataInstance.cs" />
     <Compile Include="WordReplacer.cs" />

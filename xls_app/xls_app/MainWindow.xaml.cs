@@ -28,12 +28,12 @@ namespace xls_app
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {       
+    {
         public MainWindow()
         {
             InitializeComponent();
         }
-       
+
         private void btTemplateSource_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -50,7 +50,7 @@ namespace xls_app
 
         private async void btDocMultiply_Click(object sender, RoutedEventArgs e)
         {
-           
+
             if (tbTemplateTablePath.Text == "Выберите исходную таблицу" || tbTemplateDocPath.Text == "Выберите шаблон документа")
             {
                 MessageBoxResult msb = MessageBox.Show(@"Выберите исходную таблицу и/или шаблон документа",
@@ -70,7 +70,7 @@ namespace xls_app
 
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                folderPath = dialog.FileName + @"\";                
+                folderPath = dialog.FileName + @"\";
             }
             MessageBoxResult ms = MessageBox.Show("Размножение документов может занять некоторое время\n\nДождитесь сообщения о завершении размножения документов",
                 "Сообщение",
@@ -82,29 +82,29 @@ namespace xls_app
                 MessageBoxResult ms2 = MessageBox.Show("Размножение документов завершено\n\nМожете проверять результат",
                 "Процесс завершен");
             }
-
-            
-            
         }
 
         public void MainFunc(string folderPath)
         {
-            TableData td = new TableData();            
-            var tableData = new List <TableDataInstance>();
+            TableData td = new TableData();
+            var tableData = new List<TableDataInstance>();
+
+            RangeRow rangeRow = GetRangeRow();
+
 
             try
             {
                 tableData = td.GetTableData(tbTemplateTablePath.Text, tbTableName.Text);
             }
-            catch 
+            catch
             {
                 string tName = tbTableName.Text;
-                MessageBoxResult msb = MessageBox.Show(@"В исходном файле не найдена таблица с именем "+tName,
-                        "Ошибка",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Error);
+                MessageBox.Show(@"В исходном файле не найдена таблица с именем " + tName,
+                                 "Ошибка",
+                                 MessageBoxButton.OK,
+                                 MessageBoxImage.Error);
             }
-            
+
             CopyDocument cd = new CopyDocument();
             FileNameList fnl = new FileNameList();
             Writer wr = new Writer();
@@ -116,6 +116,36 @@ namespace xls_app
             var destinationFiles = Directory.GetFiles(folderPath).ToList();
 
             wr.WriteValue(tableData, destinationFiles, tbSymbol.Text, folderPath);
+        }
+
+        private RangeRow GetRangeRow()
+        {
+            try
+            {
+                if (tbFirstRow.Text == "" && tbLastRow.Text == "")
+                {
+                    return new RangeRow();
+                }
+
+                if (uint.Parse(tbFirstRow.Text) > 0 && tbLastRow.Text == "")
+                {
+                    return new RangeRow(uint.Parse(tbFirstRow.Text));
+                }
+
+                if (uint.Parse(tbFirstRow.Text) > 0 && uint.Parse(tbLastRow.Text) > uint.Parse(tbFirstRow.Text))
+                {
+                    return new RangeRow(uint.Parse(tbFirstRow.Text), uint.Parse(tbLastRow.Text) - uint.Parse(tbFirstRow.Text));
+                }
+                return new RangeRow();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(@"Диапазон должен содержать числа больше нуля ",
+                                 "Ошибка",
+                                 MessageBoxButton.OK,
+                                 MessageBoxImage.Error);
+                return new RangeRow();
+            }
         }
 
         private void btTemplateDocSource_Click(object sender, RoutedEventArgs e)
@@ -132,7 +162,6 @@ namespace xls_app
 
         }
 
-    
         private void btInstruction_Click(object sender, RoutedEventArgs e)
         {
             string donatUrl = "https://vk.com/video-211694366_456239091";
@@ -147,7 +176,7 @@ namespace xls_app
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                
+
             }
         }
 
@@ -162,8 +191,9 @@ namespace xls_app
                     UseShellExecute = true
                 });
             }
-            catch (Exception ex) {
-                MessageBox.Show("Не удалось открыть сайт: "+ex.Message +"\n\n\n Воспользуйтесь QR-кодом");
+            catch (Exception ex)
+            {
+                MessageBox.Show("Не удалось открыть сайт: " + ex.Message + "\n\n\n Воспользуйтесь QR-кодом");
                 HelpDonat helpDonat = new HelpDonat();
                 helpDonat.ShowDialog();
             }
