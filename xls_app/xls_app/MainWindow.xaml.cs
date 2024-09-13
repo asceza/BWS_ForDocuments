@@ -79,7 +79,7 @@ namespace xls_app
             if (ms == MessageBoxResult.OK)
             {
                 MainFunc(folderPath);
-                MessageBoxResult ms2 = MessageBox.Show("Размножение документов завершено\n\nМожете проверять результат",
+                MessageBoxResult ms2 = MessageBox.Show($"Размножение документов завершено\n\nМожете проверять результат\n\n{folderPath}",
                 "Процесс завершен");
             }
         }
