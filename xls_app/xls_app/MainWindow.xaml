@@ -7,23 +7,23 @@
         mc:Ignorable="d"
         Title="Размножатель документов" Height="280" Width="582" WindowStartupLocation="CenterScreen" MinWidth="815" MinHeight="280" Icon="/Resources/Logo48.ico">
     <Grid>
-        <TextBox x:Name="tbTamplateTablePath" Margin="30,43,120,0" TextWrapping="Wrap" Text="Выберите исходную таблицу" VerticalAlignment="Top" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Button x:Name="btTamplateTableSource" Content="Обзор" Margin="0,43,30,0" Click="btTamplateSource_Click" HorizontalAlignment="Right" Width="60" Height="25" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbTemplateTablePath" Margin="30,43,120,0" TextWrapping="Wrap" Text="Выберите исходную таблицу" VerticalAlignment="Top" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Button x:Name="btTamplateTableSource" Content="Обзор" Margin="0,43,30,0" Click="btTemplateSource_Click" HorizontalAlignment="Right" Width="60" Height="25" VerticalAlignment="Top"/>
         <Label Content="Путь к таблице с данными" HorizontalAlignment="Left" Margin="32,17,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbTamplateDocPath" Height="25" Margin="30,94,120,0" TextWrapping="Wrap" Text="Выберите шаблон документа" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="tbTemplateDocPath" Height="25" Margin="30,94,120,0" TextWrapping="Wrap" Text="Выберите шаблон документа" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Label  Content="Путь к шаблону документа" HorizontalAlignment="Left" Margin="32,68,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btTamplateDocSource" Content="Обзор" Margin="0,94,30,0" Click="btTamplateDocSource_Click" HorizontalAlignment="Right" Width="60" Height="25" VerticalAlignment="Top"/>
+        <Button x:Name="btTamplateDocSource" Content="Обзор" Margin="0,94,30,0" Click="btTemplateDocSource_Click" HorizontalAlignment="Right" Width="60" Height="25" VerticalAlignment="Top"/>
         <Label  Content="Символ выделения" HorizontalAlignment="Left" Margin="32,120,0,0" Height="26" VerticalAlignment="Top"/>
         <TextBox x:Name="tbSymbol" HorizontalAlignment="Left" Height="25" Margin="32,146,0,0" TextWrapping="Wrap" Text="~" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18"/>
         
-        <Button Content="Инструкция" HorizontalAlignment="Left" Height="25" Margin="330,146,0,0" VerticalAlignment="Top" Width="90" Click="Button_Click_1"/>
-        <Button Content="Благодарность автору" HorizontalAlignment="Left" Height="25" Margin="445,146,0,0" VerticalAlignment="Top" Width="150" Click="Button_Click_2"/>
-        <Button Content="Размножить документы" HorizontalAlignment="Left" Height="25" Margin="620,146,0,0" VerticalAlignment="Top" Width="150" Click="Button_Click"/>
+        <Button Content="Инструкция" HorizontalAlignment="Left" Height="25" Margin="330,146,0,0" VerticalAlignment="Top" Width="90" Click="btInstruction_Click"/>
+        <Button Content="Благодарность автору" HorizontalAlignment="Left" Height="25" Margin="445,146,0,0" VerticalAlignment="Top" Width="150" Click="btGratitude_Click"/>
+        <Button Content="Размножить документы" HorizontalAlignment="Left" Height="25" Margin="620,146,0,0" VerticalAlignment="Top" Width="150" Click="btDocMultiply_Click"/>
         
         <TextBox  x:Name="tbTableName" HorizontalAlignment="Left" Height="25" Margin="179,146,0,0" TextWrapping="Wrap" Text="Data" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Label  Content="Имя таблицы" HorizontalAlignment="Left" Margin="179,120,0,0" Height="26" VerticalAlignment="Top"/>
         <TextBox x:Name="tbFirstTableRow" HorizontalAlignment="Left" Margin="32,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="58" Height="28"/>
-        <Label  Content="Диапазон строк" HorizontalAlignment="Left" Margin="47,171,0,0" Height="26" VerticalAlignment="Top"/>
+        <Label  Content="Диапазон строк" HorizontalAlignment="Left" Margin="43,171,0,0" Height="26" VerticalAlignment="Top"/>
         <TextBox x:Name="tbLastTableRow" HorizontalAlignment="Left" Margin="96,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="55" Height="28"/>
 
     </Grid>

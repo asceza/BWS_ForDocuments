@@ -32,10 +32,9 @@ namespace xls_app
         public MainWindow()
         {
             InitializeComponent();
-            
         }
        
-        private void btTamplateSource_Click(object sender, RoutedEventArgs e)
+        private void btTemplateSource_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Excel Files|*.xlsx|All Files|*.*";
@@ -45,15 +44,14 @@ namespace xls_app
             if (openFileDialog.ShowDialog() == true)
             {
                 string filePath = openFileDialog.FileName;
-                tbTamplateTablePath.Text = filePath;
+                tbTemplateTablePath.Text = filePath;
             }
-
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private async void btDocMultiply_Click(object sender, RoutedEventArgs e)
         {
            
-            if (tbTamplateTablePath.Text == "Выберите исходную таблицу" || tbTamplateDocPath.Text == "Выберите шаблон документа")
+            if (tbTemplateTablePath.Text == "Выберите исходную таблицу" || tbTemplateDocPath.Text == "Выберите шаблон документа")
             {
                 MessageBoxResult msb = MessageBox.Show(@"Выберите исходную таблицу и/или шаблон документа",
                     "Ошибка",
@@ -96,7 +94,7 @@ namespace xls_app
 
             try
             {
-                tableData = td.GetTableData(tbTamplateTablePath.Text, tbTableName.Text);
+                tableData = td.GetTableData(tbTemplateTablePath.Text, tbTableName.Text);
             }
             catch 
             {
@@ -113,14 +111,14 @@ namespace xls_app
 
             var fileNames = fnl.GetFileNameList(tableData);
 
-            cd.CopyDoc(fileNames, folderPath, tbTamplateDocPath.Text);
+            cd.CopyDoc(fileNames, folderPath, tbTemplateDocPath.Text);
 
             var destinationFiles = Directory.GetFiles(folderPath).ToList();
 
             wr.WriteValue(tableData, destinationFiles, tbSymbol.Text, folderPath);
         }
 
-        private void btTamplateDocSource_Click(object sender, RoutedEventArgs e)
+        private void btTemplateDocSource_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.RestoreDirectory = true;
@@ -129,13 +127,13 @@ namespace xls_app
             if (openFileDialog.ShowDialog() == true)
             {
                 string filePath = openFileDialog.FileName;
-                tbTamplateDocPath.Text = filePath;
+                tbTemplateDocPath.Text = filePath;
             }
 
         }
 
     
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void btInstruction_Click(object sender, RoutedEventArgs e)
         {
             string donatUrl = "https://vk.com/video-211694366_456239091";
             try
@@ -153,7 +151,7 @@ namespace xls_app
             }
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void btGratitude_Click(object sender, RoutedEventArgs e)
         {
             string donatUrl = "https://pay.market-tips.kontur.ru/pay/5221/";
             try
