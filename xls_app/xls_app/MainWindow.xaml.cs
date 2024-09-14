@@ -91,16 +91,15 @@ namespace xls_app
 
             RangeRow rangeRow = GetRangeRow();
 
-
             try
             {
-                switch (rangeRow.state)
+                switch (rangeRow.rangeState)
                 {
                     case RangeRow.State.Single:
                         tableDataList = tableData.GetTableData(tbTemplateTablePath.Text, tbTableName.Text, rangeRow.FirstRow);
                         break;
                     case RangeRow.State.Several:
-                        tableDataList = tableData.GetTableData(tbTemplateTablePath.Text, tbTableName.Text, rangeRow.FirstRow, rangeRow.RowsAmount);
+                        tableDataList = tableData.GetTableData(tbTemplateTablePath.Text, tbTableName.Text, rangeRow.FirstRow, rangeRow.LastRow);
                         break;
                     case RangeRow.State.All:
                         tableDataList = tableData.GetTableData(tbTemplateTablePath.Text, tbTableName.Text);
@@ -113,7 +112,7 @@ namespace xls_app
             catch
             {
                 string tName = tbTableName.Text;
-                MessageBox.Show(@"В исходном файле не найдена таблица с именем " + tName,
+                MessageBox.Show(@"К файлу нет доступа или в исходном файле не найдена таблица с именем " + tName,
                                  "Ошибка",
                                  MessageBoxButton.OK,
                                  MessageBoxImage.Error);
@@ -132,6 +131,11 @@ namespace xls_app
             wr.WriteValue(tableDataList, destinationFiles, tbSymbol.Text, folderPath);
         }
 
+        /// <summary>
+        /// Определение диапазона строк по данным из полей ввода<br/>
+        /// TODO: учесть все варианты ввода
+        /// </summary>
+        /// <returns></returns>
         private RangeRow GetRangeRow()
         {
             try
@@ -148,14 +152,23 @@ namespace xls_app
 
                 if (uint.Parse(tbFirstRow.Text) > 0 && uint.Parse(tbLastRow.Text) > uint.Parse(tbFirstRow.Text))
                 {
-                    return new RangeRow(uint.Parse(tbFirstRow.Text), uint.Parse(tbLastRow.Text) - uint.Parse(tbFirstRow.Text));
+                    return new RangeRow(uint.Parse(tbFirstRow.Text), uint.Parse(tbLastRow.Text));
                 }
+                MessageBox.Show("Диапазон должен содержать числа больше нуля.\n" +
+                                "Левая граница должна быть меньше правой.\n\n" +
+                                "Будет использована вся таблица",
+                                "Ошибка",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
                 return new RangeRow();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show(@"Диапазон должен содержать числа больше нуля ",
-                                 "Ошибка",
+                MessageBox.Show("Диапазон должен содержать числа больше нуля.\n" +
+                                "Левая граница должна быть меньше правой.\n\n" +
+                               $"Ошибка: {ex.ToString()}\n\n" +
+                                "Будет использована вся таблица",
+                                "Ошибка",
                                  MessageBoxButton.OK,
                                  MessageBoxImage.Error);
                 return new RangeRow();

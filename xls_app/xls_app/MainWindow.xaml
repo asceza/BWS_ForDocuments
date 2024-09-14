@@ -22,9 +22,9 @@
         
         <TextBox  x:Name="tbTableName" HorizontalAlignment="Left" Height="25" Margin="179,146,0,0" TextWrapping="Wrap" Text="Data" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Label  Content="Имя таблицы" HorizontalAlignment="Left" Margin="179,120,0,0" Height="26" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbFirstRow" HorizontalAlignment="Left" Margin="32,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="58" Height="28"/>
+        <TextBox x:Name="tbFirstRow" HorizontalAlignment="Left" Margin="32,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="58" Height="28" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Label  Content="Диапазон строк" HorizontalAlignment="Left" Margin="43,171,0,0" Height="26" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbLastRow" HorizontalAlignment="Left" Margin="96,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="55" Height="28"/>
+        <TextBox x:Name="tbLastRow" HorizontalAlignment="Left" Margin="96,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="55" Height="28" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
     </Grid>
 </Window>

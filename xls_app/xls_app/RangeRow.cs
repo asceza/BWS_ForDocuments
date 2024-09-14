@@ -12,8 +12,8 @@ namespace xls_app
     internal class RangeRow
     {
         public uint FirstRow {  get; set; }
-        public uint RowsAmount { get; set; }
-        public State state { get; set; }
+        public uint LastRow { get; set; }
+        public State rangeState { get; set; }
 
         public enum State : byte
         {
@@ -25,22 +25,20 @@ namespace xls_app
         public RangeRow(uint firstRow)
         {
             FirstRow = firstRow;
-            RowsAmount = 0;
-            state = State.Single;
+            LastRow = firstRow + 1;
+            rangeState = State.Single;
         }
 
-        public RangeRow(uint firstRow, uint rowsNumber)
+        public RangeRow(uint firstRow, uint lastRow)
         {
             FirstRow = firstRow;
-            RowsAmount = rowsNumber;
-            state = State.Several;
+            LastRow = lastRow;
+            rangeState = State.Several;
         }
 
         public RangeRow()
         {
-            FirstRow = 0;
-            RowsAmount = 0;
-            state = State.All;
+            rangeState = State.All;
         }
     }
 }
