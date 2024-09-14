@@ -5,53 +5,161 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:xls_app"
         mc:Ignorable="d"
-        Title="Размножатель документов" Height="280" Width="582" WindowStartupLocation="CenterScreen" MinWidth="815" MinHeight="280" Icon="/Resources/Logo48.ico">
-    <Grid>
-        <TextBox x:Name="tbTemplateTablePath" Margin="30,43,120,0" TextWrapping="Wrap" Text="Выберите исходную таблицу" VerticalAlignment="Top" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Button x:Name="btTamplateTableSource" Content="Обзор" Margin="0,43,30,0" Click="btTemplateSource_Click" HorizontalAlignment="Right" Width="60" Height="25" VerticalAlignment="Top"/>
-        <Label Content="Путь к таблице с данными" HorizontalAlignment="Left" Margin="32,17,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbTemplateDocPath" Height="25" Margin="30,94,120,0" TextWrapping="Wrap" Text="Выберите шаблон документа" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label  Content="Путь к шаблону документа" HorizontalAlignment="Left" Margin="32,68,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btTamplateDocSource" Content="Обзор" Margin="0,94,30,0" Click="btTemplateDocSource_Click" HorizontalAlignment="Right" Width="60" Height="25" VerticalAlignment="Top"/>
-        <Label  Content="Символ выделения" HorizontalAlignment="Left" Margin="32,120,0,0" Height="26" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbSymbol" HorizontalAlignment="Left" Height="25" Margin="32,146,0,0" TextWrapping="Wrap" Text="~" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18"/>
-        
-        <Button Content="Инструкция" HorizontalAlignment="Left" Height="25" Margin="330,146,0,0" VerticalAlignment="Top" Width="90" Click="btInstruction_Click"/>
-        <Button Content="Благодарность автору" HorizontalAlignment="Left" Height="25" Margin="445,146,0,0" VerticalAlignment="Top" Width="150" Click="btGratitude_Click"/>
-        <Button x:Name="btDocMultiply" Content="Размножить документы" HorizontalAlignment="Left" Height="25" Margin="620,146,0,0" VerticalAlignment="Top" Width="150" Click="btDocMultiply_Click" Background="#FFB0EAB4"/>
-        
-        <TextBox  x:Name="tbTableName" HorizontalAlignment="Left" Height="25" Margin="179,146,0,0" TextWrapping="Wrap" Text="Data" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label  Content="Имя таблицы" HorizontalAlignment="Left" Margin="179,120,0,0" Height="26" VerticalAlignment="Top"/>
-        
+        Title="Генератор документов" Height="230" Width="815" WindowStartupLocation="CenterScreen" MinWidth="815" MinHeight="230" Icon="/Resources/Logo48.ico" ResizeMode="NoResize">
+    <Grid Background="#FFD4D4D4">
+        <TextBox x:Name="tbTemplateTablePath"
+                 Margin="30,43,120,0"
+                 TextWrapping="Wrap"
+                 Text="Выберите исходную таблицу"
+                 VerticalAlignment="Top"
+                 Height="25"
+                 HorizontalContentAlignment="Center"
+                 VerticalContentAlignment="Center">
+            <TextBox.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+
+        <Button x:Name="btTamplateTableSource"
+                Content="Обзор"
+                Margin="0,43,30,0"
+                Click="btTemplateSource_Click"
+                HorizontalAlignment="Right"
+                Width="60"
+                Height="25"
+                VerticalAlignment="Top"
+                Background="#FFEAE0B0">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Label
+            Content="Путь к таблице с данными"
+            HorizontalAlignment="Left"
+            Margin="32,17,0,0"
+            VerticalAlignment="Top"/>
+
+        <TextBox x:Name="tbTemplateDocPath"
+                 Height="25"
+                 Margin="30,94,120,0"
+                 TextWrapping="Wrap"
+                 Text="Выберите шаблон документа"
+                 VerticalAlignment="Top"
+                 HorizontalContentAlignment="Center"
+                 VerticalContentAlignment="Center">
+            <TextBox.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+
+        <Label 
+            Content="Путь к шаблону документа"
+            HorizontalAlignment="Left"
+            Margin="32,68,0,0"
+            VerticalAlignment="Top"/>
+
+        <Button x:Name="btTamplateDocSource"
+                Content="Обзор"
+                Margin="0,94,30,0"
+                Click="btTemplateDocSource_Click"
+                HorizontalAlignment="Right"
+                Width="60"
+                Height="25"
+                VerticalAlignment="Top"
+                Background="#FFEAE0B0">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button x:Name="btDocMultiply"
+                Content="Сгенерировать документы"
+                HorizontalAlignment="Right"
+                Height="25"
+                Margin="0,146,120,0"
+                VerticalAlignment="Top"
+                Width="350"
+                Click="btDocGenerate_Click"
+                Background="#FFEAE0B0">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <TextBox x:Name="tbTableName"
+                 HorizontalAlignment="Left"
+                 Height="25"
+                 Margin="31,146,0,0"
+                 TextWrapping="Wrap"
+                 Text="Data"
+                 VerticalAlignment="Top"
+                 Width="120"
+                 HorizontalContentAlignment="Center"
+                 VerticalContentAlignment="Center">
+            <TextBox.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+
+        <Label 
+            Content="Имя таблицы"
+            HorizontalAlignment="Left"
+            Margin="49,118,0,0"
+            Height="26"
+            VerticalAlignment="Top"/>
+
         <Label
             Content="Диапазон строк"
             HorizontalAlignment="Left"
-            Margin="43,171,0,0"
+            Margin="190,118,0,0"
             Height="26"
-            VerticalAlignment="Top"
-            />
-        
+            VerticalAlignment="Top"/>
+
         <TextBox x:Name="tbFirstRow"
                  HorizontalAlignment="Left"
-                 Margin="32,197,0,0"
+                 Margin="174,146,0,0"
                  TextWrapping="Wrap"
                  VerticalAlignment="Top"
-                 Width="58" Height="28"
+                 Width="58"
+                 Height="25"
                  HorizontalContentAlignment="Center"
                  VerticalContentAlignment="Center"
-                 TextChanged="RangeRow_TextChanged"
-                 />
-        
+                 TextChanged="RangeRow_TextChanged">
+            <TextBox.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+
         <TextBox x:Name="tbLastRow"
                  HorizontalAlignment="Left"
-                 Margin="96,197,0,0"
+                 Margin="245,146,0,0"
                  TextWrapping="Wrap"
                  VerticalAlignment="Top"
-                 Width="55" Height="28"
+                 Width="58"
+                 Height="25"
                  HorizontalContentAlignment="Center"
                  VerticalContentAlignment="Center"
-                 TextChanged="RangeRow_TextChanged"
-                 />
-
+                 TextChanged="RangeRow_TextChanged">
+            <TextBox.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
     </Grid>
 </Window>

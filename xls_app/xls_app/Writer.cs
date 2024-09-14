@@ -9,7 +9,7 @@ namespace xls_app
 {
     internal class Writer
     {
-        public void WriteValue (List<TableDataInstance> valueList, List<string> filesPath, string spChar, string folderPath) 
+        public void WriteValue (List<TableDataInstance> valueList, List<string> filesPath, string startSeparateChar, string endSeparateChar, string folderPath) 
         {            
             foreach (string file in filesPath)
             {
@@ -20,7 +20,7 @@ namespace xls_app
 
                     foreach (TableDataInstance value in fileValues)
                     {
-                        string sourceValue = spChar + value.ParameterName + spChar;
+                        string sourceValue = startSeparateChar + value.ParameterName + endSeparateChar;
                         string destinationValue = value.ParameterValue;
                         WordReplacer wordReplaser = new WordReplacer();
                         wordReplaser.WordReplaceValue(sourceValue, destinationValue, file);
@@ -33,7 +33,7 @@ namespace xls_app
 
                     foreach (TableDataInstance value in fileValues)
                     {
-                        string sourceValue = spChar + value.ParameterName + spChar;
+                        string sourceValue = startSeparateChar + value.ParameterName + endSeparateChar;
                         string destinationValue = value.ParameterValue;
                         ExcelReplacer er = new ExcelReplacer();
                         er.ExcelReplaceValue(sourceValue, destinationValue, file);                       
