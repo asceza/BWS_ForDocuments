@@ -102,7 +102,7 @@ namespace xls_app
                 currentRow++;
                 foreach (var column in columns)
                 {
-                    if (currentRow >= firstRow)
+                    if (currentRow >= firstRow && currentRow <= lastRow)
                     {
                         TableDataInstance instance = new TableDataInstance();
                         instance.NewFileName = row.Cell(1).Value.ToString();
