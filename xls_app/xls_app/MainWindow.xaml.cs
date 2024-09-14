@@ -138,41 +138,18 @@ namespace xls_app
         /// <returns></returns>
         private RangeRow GetRangeRow()
         {
-            try
-            {
-                if (tbFirstRow.Text == "" && tbLastRow.Text == "")
-                {
-                    return new RangeRow();
-                }
 
-                if (uint.Parse(tbFirstRow.Text) > 0 && tbLastRow.Text == "")
-                {
-                    return new RangeRow(uint.Parse(tbFirstRow.Text));
-                }
-
-                if (uint.Parse(tbFirstRow.Text) > 0 && uint.Parse(tbLastRow.Text) > uint.Parse(tbFirstRow.Text))
-                {
-                    return new RangeRow(uint.Parse(tbFirstRow.Text), uint.Parse(tbLastRow.Text));
-                }
-                MessageBox.Show("Диапазон должен содержать числа больше нуля.\n" +
-                                "Левая граница должна быть меньше правой.\n\n" +
-                                "Будет использована вся таблица",
-                                "Ошибка",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Error);
-                return new RangeRow();
-            }
-            catch (Exception ex)
+            if (uint.Parse(tbFirstRow.Text) > 0 && tbLastRow.Text == "")
             {
-                MessageBox.Show("Диапазон должен содержать числа больше нуля.\n" +
-                                "Левая граница должна быть меньше правой.\n\n" +
-                               $"Ошибка: {ex.ToString()}\n\n" +
-                                "Будет использована вся таблица",
-                                "Ошибка",
-                                 MessageBoxButton.OK,
-                                 MessageBoxImage.Error);
-                return new RangeRow();
+                return new RangeRow(uint.Parse(tbFirstRow.Text));
             }
+
+            if (uint.Parse(tbFirstRow.Text) > 0 && uint.Parse(tbLastRow.Text) > uint.Parse(tbFirstRow.Text))
+            {
+                return new RangeRow(uint.Parse(tbFirstRow.Text), uint.Parse(tbLastRow.Text));
+            }
+
+            return new RangeRow();
         }
 
         private void btTemplateDocSource_Click(object sender, RoutedEventArgs e)
@@ -189,6 +166,11 @@ namespace xls_app
 
         }
 
+        /// <summary>
+        /// Обработки нажатия кнопки "Инструкция"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btInstruction_Click(object sender, RoutedEventArgs e)
         {
             string donatUrl = "https://vk.com/video-211694366_456239091";
@@ -207,6 +189,11 @@ namespace xls_app
             }
         }
 
+        /// <summary>
+        /// Обработка кнопки "Благодарность"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btGratitude_Click(object sender, RoutedEventArgs e)
         {
             string donatUrl = "https://pay.market-tips.kontur.ru/pay/5221/";
@@ -223,6 +210,32 @@ namespace xls_app
                 MessageBox.Show("Не удалось открыть сайт: " + ex.Message + "\n\n\n Воспользуйтесь QR-кодом");
                 HelpDonat helpDonat = new HelpDonat();
                 helpDonat.ShowDialog();
+            }
+
+        }
+
+        /// <summary>
+        /// Обработка изменения содержимого в текстовых полях tbFirstRow и tbLastRow
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RangeRow_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            uint contentFirstRow = 88;
+            uint contentLastRow;
+            if (((uint.TryParse(tbFirstRow.Text, out contentFirstRow) && (contentFirstRow > 0)) || (tbFirstRow.Text == ""))
+              && ((uint.TryParse(tbLastRow.Text, out contentLastRow) && (contentLastRow > contentFirstRow)) || (tbLastRow.Text == "")))
+            {
+                tbFirstRow.Background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+                tbLastRow.Background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+                btDocMultiply.IsEnabled = true;
+
+            }
+            else
+            {
+                btDocMultiply.IsEnabled = false;
+                tbFirstRow.Background = new SolidColorBrush(Color.FromRgb(250, 161, 155));
+                tbLastRow.Background = new SolidColorBrush(Color.FromRgb(250, 161, 155));
             }
 
         }

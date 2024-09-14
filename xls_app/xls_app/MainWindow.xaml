@@ -18,13 +18,40 @@
         
         <Button Content="Инструкция" HorizontalAlignment="Left" Height="25" Margin="330,146,0,0" VerticalAlignment="Top" Width="90" Click="btInstruction_Click"/>
         <Button Content="Благодарность автору" HorizontalAlignment="Left" Height="25" Margin="445,146,0,0" VerticalAlignment="Top" Width="150" Click="btGratitude_Click"/>
-        <Button Content="Размножить документы" HorizontalAlignment="Left" Height="25" Margin="620,146,0,0" VerticalAlignment="Top" Width="150" Click="btDocMultiply_Click" Background="#FFEAB0B0"/>
+        <Button x:Name="btDocMultiply" Content="Размножить документы" HorizontalAlignment="Left" Height="25" Margin="620,146,0,0" VerticalAlignment="Top" Width="150" Click="btDocMultiply_Click" Background="#FFB0EAB4"/>
         
         <TextBox  x:Name="tbTableName" HorizontalAlignment="Left" Height="25" Margin="179,146,0,0" TextWrapping="Wrap" Text="Data" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Label  Content="Имя таблицы" HorizontalAlignment="Left" Margin="179,120,0,0" Height="26" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbFirstRow" HorizontalAlignment="Left" Margin="32,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="58" Height="28" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label  Content="Диапазон строк" HorizontalAlignment="Left" Margin="43,171,0,0" Height="26" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbLastRow" HorizontalAlignment="Left" Margin="96,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="55" Height="28" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        
+        <Label
+            Content="Диапазон строк"
+            HorizontalAlignment="Left"
+            Margin="43,171,0,0"
+            Height="26"
+            VerticalAlignment="Top"
+            />
+        
+        <TextBox x:Name="tbFirstRow"
+                 HorizontalAlignment="Left"
+                 Margin="32,197,0,0"
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top"
+                 Width="58" Height="28"
+                 HorizontalContentAlignment="Center"
+                 VerticalContentAlignment="Center"
+                 TextChanged="RangeRow_TextChanged"
+                 />
+        
+        <TextBox x:Name="tbLastRow"
+                 HorizontalAlignment="Left"
+                 Margin="96,197,0,0"
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top"
+                 Width="55" Height="28"
+                 HorizontalContentAlignment="Center"
+                 VerticalContentAlignment="Center"
+                 TextChanged="RangeRow_TextChanged"
+                 />
 
     </Grid>
 </Window>
