@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:xls_app"
         mc:Ignorable="d"
         Title="Генератор документов" Height="230" Width="815" WindowStartupLocation="CenterScreen" MinWidth="815" MinHeight="230" Icon="/Resources/Logo48.ico" ResizeMode="NoResize">
-    <Grid Background="#FFD4D4D4">
+    <Grid Background="#FFE4E4E4">
         <TextBox x:Name="tbTemplateTablePath"
                  Margin="30,43,120,0"
                  TextWrapping="Wrap"
@@ -88,7 +88,7 @@
                 Margin="0,146,120,0"
                 VerticalAlignment="Top"
                 Width="350"
-                Click="btDocGenerate_Click"
+                Click="btGenerateDocs_Click"
                 Background="#FFEAE0B0">
             <Button.Resources>
                 <Style TargetType="Border">

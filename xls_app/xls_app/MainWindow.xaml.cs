@@ -18,6 +18,11 @@ namespace xls_app
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Обработка открытия таблицы с данными
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btTemplateSource_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -33,7 +38,31 @@ namespace xls_app
         }
 
 
-        private async void btDocGenerate_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Обработка открытия шаблона
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btTemplateDocSource_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.RestoreDirectory = true;
+            openFileDialog.Title = "Выберите шаблон документа";
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string filePath = openFileDialog.FileName;
+                tbTemplateDocPath.Text = filePath;
+            }
+        }
+
+
+        /// <summary>
+        /// Обработка кнопки "Сгенерировать документы"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btGenerateDocs_Click(object sender, RoutedEventArgs e)
         {
 
             if (tbTemplateTablePath.Text == "Выберите исходную таблицу" || tbTemplateDocPath.Text == "Выберите шаблон документа")
@@ -63,13 +92,18 @@ namespace xls_app
                 MessageBoxImage.Information);
             if (ms == MessageBoxResult.OK)
             {
-                MainFunc(folderPath);
+                GenerateDocs(folderPath);
                 MessageBoxResult ms2 = MessageBox.Show("Генерация документов завершена\n\nМожете проверять результат",
                 "Процесс завершен");
             }
         }
 
-        public void MainFunc(string folderPath)
+
+        /// <summary>
+        /// Генерация документов
+        /// </summary>
+        /// <param name="folderPath"></param>
+        public void GenerateDocs(string folderPath)
         {
             TableData tableData = new TableData();
             var tableDataList = new List<TableDataInstance>();
@@ -116,6 +150,7 @@ namespace xls_app
             wr.WriteValue(tableDataList, destinationFiles, "{", "}", folderPath);
         }
 
+
         /// <summary>
         /// Определение диапазона строк по данным из полей ввода tbFirstRow и tbLastRow<br/>
         /// </summary>
@@ -133,21 +168,6 @@ namespace xls_app
                 return new RangeRow(uint.Parse(tbFirstRow.Text), uint.Parse(tbLastRow.Text));
             }
             return new RangeRow();
-        }
-
-
-        private void btTemplateDocSource_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.RestoreDirectory = true;
-            openFileDialog.Title = "Выберите шаблон документа";
-
-            if (openFileDialog.ShowDialog() == true)
-            {
-                string filePath = openFileDialog.FileName;
-                tbTemplateDocPath.Text = filePath;
-            }
-
         }
 
 
