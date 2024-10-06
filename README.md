@@ -1,1 +1,1 @@
-![]([https://github.com/asceza/BWS_ForDocuments/blob/master/BWS.png])
+![](https://github.com/asceza/BWS_ForDocuments/blob/master/BWS.png)
